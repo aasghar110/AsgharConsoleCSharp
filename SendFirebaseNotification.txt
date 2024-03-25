@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        string serverKey = "AAAAbmYILME:APA91bEXdREA8AlGcZJgS28-OGB_9ttqRkdFYWFW_2B4is9hNM7cD95zV8pnaVZgT2IvZROCBkJds8rQExzK5Y5hoIsm0Z9t1-nlE1sajbzPzpMndWUpIDD3S9kT_dnwBYEICOiTCS5K";
+        string serverKey = "AAAAbmYILME:APA91bEXdREA8AlGcZJgS28-OGB_9ttqRkdFYWFW_2B4is9hNM7cD95zV8pnaVZgT2IvZROCBkJds8rQExzK5Y5hoIsm0Z9t1-";
         string fcmUrl = "https://fcm.googleapis.com/fcm/send";
 
         var payload = new

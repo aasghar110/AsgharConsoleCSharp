@@ -12,8 +12,8 @@ namespace FaceComparisonConsoleApp
             try
             {
                 string apiUrl = "https://api-us.faceplusplus.com/facepp/v3/compare";
-                string apiKey = "4LkcmmlGb7IoRoE3FCsmbromtK5uzcao";
-                string apiSecret = "ebmmqsVi0GmLOQO64ZDbjghYHa3bJh_I";
+                string apiKey = "4LkcmmlGb7IoRoE3FCsmbromtK5acao";
+                string apiSecret = "ebmmqsVi0GmLOQO64ZDbjgaaaaaaHa3bJh_I";
                 double confidenceThreshold = 80.0; // Set confidence threshold
 
                 // List of missing and found report image URLs
