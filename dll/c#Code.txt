@@ -1,0 +1,30 @@
+using System;
+using EncryptionAsghar;
+
+namespace EncryptionConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string plainText = "5445";
+            string encryptedText = Encryption.Encrypt(plainText);
+            Console.WriteLine($"Encrypted Text: {encryptedText}");
+            string encryptedTextNotepad = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "encryptedText.txt");
+
+            using (StreamWriter writer = new StreamWriter(encryptedTextNotepad, true))
+            {
+                writer.WriteLine(encryptedText);
+            }
+
+            string decryptedText = Encryption.Decrypt(encryptedText,"5445");
+            string decryptedTextNotepad = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "decryptedText.txt");
+            Console.WriteLine($"Decrypted Text: {decryptedText}");
+            using (StreamWriter writer = new StreamWriter(decryptedTextNotepad, true))
+            {
+                writer.WriteLine(decryptedText);
+            }
+            Console.ReadLine();
+        }
+    }
+}

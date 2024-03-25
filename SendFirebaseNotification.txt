@@ -1,0 +1,53 @@
+﻿using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        string serverKey = "AAAAbmYILME:APA91bEXdREA8AlGcZJgS28-OGB_9ttqRkdFYWFW_2B4is9hNM7cD95zV8pnaVZgT2IvZROCBkJds8rQExzK5Y5hoIsm0Z9t1-nlE1sajbzPzpMndWUpIDD3S9kT_dnwBYEICOiTCS5K";
+        string fcmUrl = "https://fcm.googleapis.com/fcm/send";
+
+        var payload = new
+        {
+            to = "fprO2aANQ9earsbzG399F3:APA91bGiRymrT-AWqRXaFbk_iU4V7VXjg6u2dPWKFDk-skzVbpin2TCLDE4IhsUgRtJDCRhMMOSm4Urw6JUeKdCmgJWvjjNPrOAY8p_PQoGZ6fV515CjfPzvhPXEFCRiI-UH6y52_Qe6",
+            notification = new
+            {
+                body = "Testing By Asghar",
+                title = "Asghar Notification",
+                redirect = "product"
+            },
+            data = new
+            {
+                title = "Push Notification",
+                message = "Test Push Notification",
+                redirect = "product"
+            }
+        };
+
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", $"key={serverKey}");
+            client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
+
+            var jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
+            var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(fcmUrl, httpContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Message sent successfully.");
+                Console.WriteLine("Response content:");
+                Console.WriteLine(responseContent);
+            }
+            else
+            {
+                Console.WriteLine($"Failed to send message. StatusCode: {response.StatusCode}");
+            }
+        }
+    }
+}
